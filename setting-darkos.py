@@ -25,7 +25,7 @@ def wine_manager():
   print("")
   choice = input()
   if choice != "1" and choice != "2" and choice != "3" and choice != "4" and choice != "dev":
-    print("wrong")
+    print("错误")
     wine_manager()
   elif choice == "1":
     wine_select()
@@ -107,7 +107,7 @@ def install_wine2():
     os.system(f'ln -s /sdcard/Download "{wine_prefix}/dosdevices/o:" &>/dev/null')
     os.system(f'ln -s /sdcard/darkos "{wine_prefix}/dosdevices/e:" &>/dev/null')
     os.system(f'ln -s /data/data/com.termux/files "{wine_prefix}/dosdevices/z:"')
-    print("Installing DXVK+Zink...")
+    print("安装DXVK+Zink...")
     os.system(f'box64 wine "$PREFIX/glibc/opt/apps/Install OS stuff.bat" &>/dev/null')
     print("完成!")
     print("前缀已完成 🤪 ")
@@ -121,7 +121,7 @@ def install_wine3():
     conf_path = f"/data/data/com.termux/files/usr/glibc/opt/wine/3/os.conf"
     wine_prefix = f"/data/data/com.termux/files/usr/glibc/opt/wine/3/.wine"
     exec(open(conf_path).read())
-    print("Creating wine prefix 💫")
+    print("创建Wine前缀 💫")
     if not os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/3/wine/bin/wine64"):
         os.system(f"ln -sf /data/data/com.termux/files/usr/glibc/opt/wine/3/wine/bin/wine $PREFIX/glibc/bin/wine64")
         os.system(f"ln -sf /data/data/com.termux/files/usr/glibc/opt/wine/3/wine/bin/wine $PREFIX/glibc/opt/wine/3/wine/bin/wine64")

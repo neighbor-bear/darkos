@@ -48,7 +48,7 @@ def edit_bashrc():
             for line in f:
                 if command in line:
                     command_exists = True
-                    print("Welcome back again ☺️ ")
+                    print("后会有期 ☺️ ")
                     break
         if not command_exists:
             with open(bashrc_path, 'a') as f:
@@ -86,7 +86,7 @@ def create_prefix():
     print("前缀已完成 🤪 ")
     time.sleep(3)
     os.system("box64 wineserver -k &>/dev/null")
-    print(f'done')
+    print(f'完成')
     print("")
     print("正在启动DARK OS ")
     time.sleep(2)

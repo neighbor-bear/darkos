@@ -78,7 +78,7 @@ def wine_container():
             os.system(f'ln -s /sdcard/Download "{wine_prefix}/dosdevices/o:" &>/dev/null')
             os.system(f'ln -s /sdcard/darkos "{wine_prefix}/dosdevices/e:" &>/dev/null')
             os.system(f'ln -s /data/data/com.termux/files "{wine_prefix}/dosdevices/z:"')
-            print("Installing DXVK+Zink...")
+            print("安装DXVK+Zink...")
             os.system(f'box64 wine "$PREFIX/glibc/opt/apps/Install OS stuff.bat" &>/dev/null')
             print("完成！")
             #os.system("clear") 
@@ -133,16 +133,16 @@ def recreate_32bit():
         exec(open(conf_path).read())
         def prefix_gstreamer():
             os.environ['WINEPREFIX'] = os.path.expandvars("$PREFIX/glibc/opt/wine/3/.wine")
-            print("Fixing wine prefix ....")
+            print("修复Wine前缀....")
             os.system(f'WINEDLLOVERRIDES="mscoree=disabled" box64 wine64 wineboot &>/dev/null')
             os.system(f'cp -r $PREFIX/glibc/opt/Startxmenu/* "{wine_prefix}/drive_c/ProgramData/Microsoft/Windows/Start Menu"')
             os.system(f'rm "{wine_prefix}/dosdevices/z:"')
             os.system(f'ln -s /sdcard/Download "{wine_prefix}/dosdevices/o:" &>/dev/null')
             os.system(f'ln -s /sdcard/darkos "{wine_prefix}/dosdevices/e:" &>/dev/null')
             os.system(f'ln -s /data/data/com.termux/files "{wine_prefix}/dosdevices/z:"')
-            print("please wait ..")
+            print("请稍后……")
             os.system(f'box64 wine "$PREFIX/glibc/opt/apps/Install OS stuff.bat" &>/dev/null')
-            print("done...please restart OS")
+            print("完成，请重启OS")
             time.sleep(1)
             os.system("box64 wineserver -k &>/dev/null")
             main_menu()
@@ -269,10 +269,10 @@ def start_container():
     user_input = input("Enter 1 to stop: ")
     if user_input == "1":
         os.system("box64 wineserver -k")
-        print("Exiting 👋")
+        print("正在退出 👋")
         os.system('pkill -f "app_process / com.termux.x11"')
         os.system('pkill -f pulseaudio')
-        print("see you later")
+        print("后会有期")
         main_menu()
     main_menu()
         
@@ -332,19 +332,19 @@ def recreate_prefix_wineAZ():
         change_setting()
     elif user_input == "1":
          shutil.rmtree('/data/data/com.termux/files/usr/glibc/opt/wine/1/.wine')
-         print(f'done')
+         print(f'完成')
     elif user_input == "2":
          shutil.rmtree('/data/data/com.termux/files/usr/glibc/opt/wine/2/.wine')
-         print(f'done')
+         print(f'完成')
     elif user_input == "3":
          shutil.rmtree('/data/data/com.termux/files/usr/glibc/opt/wine/3/.wine')
-         print(f'done')
+         print(f'完成')
     elif user_input == "4":
          shutil.rmtree('/data/data/com.termux/files/usr/glibc/opt/wine/4/.wine')
-         print(f'done')
+         print(f'完成')
     elif user_input == "5":
          shutil.rmtree('/data/data/com.termux/files/usr/glibc/opt/wine/5/.wine')
-         print(f'done')
+         print(f'完成')
     main_menu()
 def check_config_wine():
     config_folder = "/sdcard/darkos"
@@ -371,7 +371,7 @@ def change_setting():
     print("8) CPU超频 🔥 (在某些设备中需要获取root权限)")
     print("9) 如果 MangoHUD 与您的设备不兼容，请修复它 🎭")
     print("10) winetricks ⛑️")
-    print("else) Back 🔙")
+    print("else) 返回 🔙")
     print("")
     choice = input()
     if choice != "1" and choice != "2" and choice != "3" and choice != "4" and choice != "5" and choice != "6" and choice != "7" and choice != "8" and choice != "9" and choice != "10" and choice != "dev":
@@ -416,10 +416,10 @@ def change_setting():
     elif choice == "6":
         os.system("python3 $PREFIX/bin/debug-darkos.py")
     elif choice == "9":
-        print("fixing......")
+        print("修复中......")
         mangohud_vulkan()
         time.sleep(2)
-        print("done 👍")
+        print("完成 👍")
         time.sleep(1)
         change_setting()
     elif choice == "r":
@@ -458,7 +458,7 @@ def box_version():
   photo()
   print("选择Box版本:")
   print("")
-  print("1) SAFE-BOX")
+  print("1) BOX-安全模式")
   print("2) 编译并更新BOX64")
   print("3) BOX86针对Wine的非WOW64版本 ")
   print("else) 取消和返回")
@@ -475,7 +475,7 @@ def box_version():
     change_setting()
   elif choice == "2":
     os.system("rm $PREFIX/bin/box64")
-    print("compiling....")
+    print("编译中....")
     os.system("apt install cmake-glibc make-glibc python-glibc -y &>/dev/null")
     Compile()
     os.system("mv //data/data/com.termux/files/home/box64/build/box64 $PREFIX/bin/")
@@ -501,7 +501,7 @@ def reload():
             if line.startswith("# allow-external-apps = true"):
                 line = line.replace("# ", "")
             file.write(line)
-            #print(f"File updated: {file_path}")
+            #print(f"文件更新: {file_path}")
     os.system("termux-reload-settings")
 def new_sesson():
     os.system("am startservice --user 0 -n com.termux/com.termux.app.RunCommandService \
@@ -525,7 +525,7 @@ def main_menu():
     main()
     choice = input()
     if choice != "1" and choice != "2" and choice != "3" and choice != "4":
-        print("wrong")
+        print("错误")
         main_menu()
     elif choice == "1":
         wine_container()

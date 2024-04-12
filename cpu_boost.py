@@ -43,7 +43,7 @@ def get_file_descriptor_info(pid):
         file_names = [file.path for file in files]
         return file_names
     except (psutil.NoSuchProcess, psutil.AccessDenied) as e:
-        print(f"Error getting file descriptor info for PID {pid}: {e}")
+        print(f"获取进程ID的文件描述符信息时出错 {pid}: {e}")
         return []
 
 def get_shared_memory_info(pid):
@@ -62,7 +62,7 @@ def get_shared_memory_info(pid):
 
         return shared_memory_info
     except (psutil.NoSuchProcess, psutil.AccessDenied) as e:
-        print(f"Error getting shared memory info for PID {pid}: {e}")
+        print(f"获取进程ID的共享内存信息时出错 {pid}: {e}")
         return []
 
 def get_idle_cores():
@@ -112,11 +112,11 @@ def adjust_cpu_and_priority(process, num_cores_to_assign, cpu_freqs):
             # Set the priority of the process to a higher value
             process.nice(-10)  # Adjust the nice value as needed
 
-            print(f"Adjusted CPU affinity and priority for PID {process.info['pid']}")
+            print(f"调整了进程ID的CPU亲和性和优先级 {process.info['pid']}")
         else:
-            print(f"No need to adjust CPU affinity for PID {process.info['pid']}")
+            print(f"无需调整进程ID的CPU亲和性 {process.info['pid']}")
     except (psutil.NoSuchProcess, IndexError, psutil.AccessDenied) as e:
-        print(f"Error adjusting CPU affinity and priority: {e}")
+        print(f"调整CPU亲和性和优先级时出错: {e}")
 
 def optimize_memory_for_high_cpu_process(process, recommended_memory_gb=6):
     try:
@@ -138,9 +138,9 @@ def optimize_memory_for_high_cpu_process(process, recommended_memory_gb=6):
             gc.collect()
 
         else:
-            print(f"No unnecessary memory to release for PID {process.info['pid']}")
+            print(f"对于进程ID没有不必要的内存可供释放 {process.info['pid']}")
     except (psutil.NoSuchProcess, psutil.AccessDenied) as e:
-        print(f"Error optimizing memory for process: {e}")
+        print(f"优化进程内存时出错: {e}")
 
 class ProcessInfo:
     def __init__(self, pid, cpu_usage, file_descriptors):
@@ -260,7 +260,7 @@ def cpu_memory():
                     # Get file information for the high CPU process
                     file_info = get_file_descriptor_info(high_usage_process.info['pid'])
                     num_files = len(file_info)
-                    print(f"Number of files in use by PID {high_usage_process.info['pid']}: {num_files}")
+                    print(f"进程ID正在使用的文件数量 {high_usage_process.info['pid']}: {num_files}")
 
                 low_usage_processes = [process for process in processes
                                        if process.info['cpu_percent'] < 5 and process.info['create_time'] < time.time() - 10]
@@ -273,24 +273,24 @@ def cpu_memory():
                                           reverse=False)
                     process.cpu_affinity(sorted_cores)
 
-                    print(f"Assigned low-scoring cores for PID {process.info['pid']}")
+                    print(f"为进程ID分配了低评分核心 {process.info['pid']}")
 
                 with term.fullscreen():
                     print(term.clear)
-                    print("CPU Info:")
+                    print("CPU信息:")
                     for key, value in cpu_info.items():
                         print(f"{key}: {value}")
 
-                    print("\nCPU Usage:")
+                    print("\nCPU使用率:")
                     for process_pid, process_usage, process_core_count in cpu_usage_futures:
                         print(f"PID {process_pid}: {process_usage}% (Using {process_core_count} cores)")
                         num_files = len(get_file_descriptor_info(process_pid))
-                        print(f"Number of files for PID {process_pid}: {num_files}")
+                        print(f"进程ID的文件数量 {process_pid}: {num_files}")
 
-                    print("\nMemory Info:")
-                    print(f"Memory Usage: {cpu_info['Memory Usage']}%")
-                    print(f"Available Memory: {cpu_info['Available Memory']} bytes")
-                    print(f"Total Memory: {cpu_info['Total Memory']} bytes")
+                    print("\n内存信息:")
+                    print(f"内存使用量: {cpu_info['Memory Usage']}%")
+                    print(f"可用内存: {cpu_info['Available Memory']} bytes")
+                    print(f"总内存: {cpu_info['Total Memory']} bytes")
 
                 time.sleep(0.5)
     except KeyboardInterrupt:

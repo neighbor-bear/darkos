@@ -59,7 +59,7 @@ def recreate_prefix():
       os.system(f"ln -sf /data/data/com.termux/files/us/glibc/opt/wine/{prefix_path}/wine/bin/winecfg $PREFIX/glibc/bin/winecfg")
       os.environ.pop('LD_PRELOAD', None)
       def prefix_gstreamer():
-        print("Creating wine prefix 💫")
+        print("创建Wine前缀 💫")
         os.environ.pop('BOX86_DYNAREC_BIGBLOCK', None)
         os.environ.pop('BOX64_DYNAREC_BIGBLOCK', None)
         os.environ.pop('WINEESYNC', None)
@@ -72,7 +72,7 @@ def recreate_prefix():
         os.system(f'ln -s /sdcard/Download "{wine_prefix}/dosdevices/o:" &>/dev/null')
         os.system(f'ln -s /sdcard/darkos "{wine_prefix}/dosdevices/e:" &>/dev/null')
         os.system(f'ln -s /data/data/com.termux/files "{wine_prefix}/dosdevices/z:"')
-        print("Installing DXVK+Zink...")
+        print("安装DXVK+Zink...")
         os.system(f'box64 wine "$PREFIX/glibc/opt/apps/Install OS stuff.bat" &>/dev/null')
         print("完成!") 
         print("前缀已完成 🤪 ")
@@ -88,7 +88,7 @@ def recreate_prefix():
         user_input = input("输入1以停止: ")
         if user_input == "1":
           os.system("box64 wineserver -k")
-          print("Exiting 👋")
+          print("正在退出 👋")
           os.system('pkill -f "app_process / com.termux.x11"')
           os.system('pkill -f pulseaudio')
           reboot()

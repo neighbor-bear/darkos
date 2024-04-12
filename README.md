@@ -1,96 +1,96 @@
 ![logo](img/logo.png "logo")
 
-**Darkos** is a project designed to run Windows x86_64 applications and games in [Termux](https://github.com/termux/termux-app) native GLIBC.
-It utilizes [Box86](https://github.com/ptitSeb/box86)
-and [Box64](https://github.com/ptitSeb/box86)
-to run [Wine](https://www.winehq.org/) on android.
+**Darkos**是一个可在 [Termux](https://github.com/termux/termux-app) 原生 GLIBC 中运行 Windows x86_64 应用程序和游戏的项目
+它在安卓上利用 [Box86](https://github.com/ptitSeb/box86)
+和 [Box64](https://github.com/ptitSeb/box86)
+运行 [Wine](https://www.winehq.org/) 。
 
-# Installation:
-1. Install
+# 安装指南:
+1. 安装
 [Termux](https://f-droid.org/repo/com.termux_118.apk),
-[Termux-X11](https://github.com/ahmad1abbadi/extra/releases/download/apps/termux-x11.apk) and
-[Input Bridge v0.1.9.9](https://github.com/ahmad1abbadi/extra/releases/download/apps/InputBridge_v0.1.9.9.apk) or [Input Bridge v0.0.7](https://github.com/ahmad1abbadi/extra/releases/download/apps/input+bridge+0.0.7.apk)
+[Termux-X11](https://github.com/ahmad1abbadi/extra/releases/download/apps/termux-x11.apk) 和
+[Input Bridge v0.1.9.9](https://github.com/ahmad1abbadi/extra/releases/download/apps/InputBridge_v0.1.9.9.apk) 或者 [Input Bridge v0.0.7](https://github.com/ahmad1abbadi/extra/releases/download/apps/input+bridge+0.0.7.apk)
 
-2. Open Termux and paste the following command:
+2. 打开 Termux 并粘贴以下命令：
 ```bash
-curl -o install https://raw.githubusercontent.com/neighbor-bear/darkos/main/installOS.sh && chmod +x install && ./install
+curl -o install https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/installOS.sh && chmod +x install && ./install
 ```
 
-3. **Darkos** will automatically start after installation is complete.
-   Remember each time you open Termux, Darkos will auto-start.
+3. 安装完成后，**Darkos** 将自动启动。
+   请记住，每次打开 Termux 时，Darkos 都会自动启动。
    
-   To exit **Darkos** and use Termux normally, press '1' within the first 4 seconds. Otherwise, Darkos will start and run Wine + Termux-X11.
+   要在 4 秒内退出 **Darkos** 并正常使用 Termux，请按 '1'。否则，**Darkos** 将启动并运行 Wine + Termux-X11。
    
-# Features:
-1. Gstreamer support, which is required for games like:
-* resident evil 7
-* devil may cry 5
-* amid evil
-2. Dedicated configuration app
+# 功能及特性:
+1. 支持Gstreamer，这是运行诸如以下游戏所必需的：
+* 生化危机7
+* 鬼泣5
+* 邪恶之中
+2. 专用配置应用程序
 
-  And many more, you can discover by your self.
-# Configuration:
+  还有更多内容，您可以自行探索。
+# 配置:
 
-## Box64/Box86 Configuration + Dynarec
-The configuration can be easily done from the Darkos configuration app. Simply modify the Box options, click "Apply," and then "Reboot" to apply the changes.
+## Box64/Box86 配置 + Dynarec
+配置可以通过 Darkos 配置应用程序轻松完成。只需修改 Box 选项，点击“应用”，然后点击“重启”即可应用更改。
 
-For more information about dynarec variables see [Box64 usage](https://github.com/ptitSeb/box64/blob/main/docs/USAGE.md) and [Box86 usage](https://github.com/ptitSeb/box86/blob/master/docs/USAGE.md)
+关于 dynarec 变量的更多信息，请参阅： [Box64 usage](https://github.com/ptitSeb/box64/blob/main/docs/USAGE.md) 和 [Box86 usage](https://github.com/ptitSeb/box86/blob/master/docs/USAGE.md)
 
-## Update OS
-This option updates Darkos to the latest version.
+## 更新 OS
+这个选项将 Darkos 更新到最新版本。
 
-## Wine Manager 
-Wine can be installed or uninstalled from the Darkos configuration embedded within Wine. Simply select the "Wine manager" option.
+## Wine管理 
+您可以在 Darkos 配置中内嵌的 Wine 管理器中安装或卸载 Wine。只需选择“Wine 管理”选项即可。
 
-To select a Wine container, use the container dropdown menu from the Darkos configuration and then click "Change container."
+要选择 Wine 容器，请在 Darkos 配置中使用容器下拉菜单，然后点击“更改容器”。
 
 
-## Debug Mode
-This mode enables printing Wine and Box64 debug information to a log file located at /sdcard/darkos/darkos.log. You can share this file to our Telegram group.
+## 调试模式
+此模式将 Wine 和 Box64 的调试信息记录到位于 /sdcard/darkos/darkos.log 的日志文件中。您可以将此文件分享到我们的 Telegram 群组中。
 
-## Toggle Mangohud
-Mangohud is an on-screen display (OSD) that shows useful information like FPS, CPU usage, GPU load, and GPU temperature.
+## 切换 Mangohud
+Mangohud 是一个屏幕显示（OSD）工具，用于展示有用的信息，如帧率（FPS）、CPU 使用率、GPU 负载以及 GPU 温度。
 
-Currently, to see GPU load and temperature stats, you need to disable SELinux by running the following command in Termux:
+目前，要查看 GPU 负载和温度统计信息，您需要在 Termux 中运行以下命令来禁用 SELinux：
 ```
 su -c setenforce 0
 ```
-To re-enable SELinux:
+重新启用SELinux：
 
 ```
 su -c setenforce 1
 ```
 
-## GPU Driver Changer
-This option allows you to change the GPU driver.
+## GPU Driver Changer（GPU驱动管理）
+这个选项允许你更改GPU驱动程序
 
-## Switch IB
-This toggle lets you switch the input bridge between version 0.1.9.9 and version 0.0.7. Choose the version that works best for you.
+## Switch IB(切换IB)
+这个切换开关可以让你在0.1.9.9版本和0.0.7版本的输入桥之间切换,以此来选择最适合你的版本
 
-## Kill Services
-Use this toggle to kill services.exe without needing to open the task manager.
+## Kill Services（杀死进程）
+使用这个切换开关来结束services.exe进程，无需打开任务管理器
 
-## Hit F5 key
-This will open the task manager.
+## Hit F5 key（按F5键）
+这将打开任务管理器
 
-## DXVK changer 
-This option lets you choose the DXVK version, allowing you to select the one that works best for a specific game.
+## DXVK changer （更改DXVK）
+这个选项允许你选择DXVK的版本，以便为特定游戏选择最合适的版本
 
-## Install Tweaks
-This option lets you install Wine tricks like apps, DLLs, and fonts.
+## Install Tweaks（安装Tweaks）
+这个选项允许你安装Wine小工具，如应用程序、DLL文件和字体
 
-## Personalize
-You can change the theme, background, or resolution of the Wine desktop.
+## Personalize（个性化）
+你可以更改Wine桌面的主题、背景或分辨率
 
-## Termux-X11 resolution 
-The fallback resolution is only used when the X11 resolution cannot be detected automatically. The default fallback resolution is 800x600.
+## Termux-X11 resolution （Termux-X11 分辨率）
+备用分辨率仅在无法自动检测X11分辨率时使用。默认的备用分辨率是800x600
 
-## Termux and termux-x11 preferences
-### recommend setup for termux:
-* `Allow apps to open new windows while running in the background`
-* `Allow apps to display pop-up windows`
+## Termux and termux-x11 preferences（Termux 和 termux-x11偏好设置）
+### Termux的推荐设置:
+* `允许应用在后台运行时打开新窗口`
+* `允许应用显示弹出窗口`
 
-### recommend setup for termux-x11:
+### Termux-X11的推荐设置:
 * `Display resolution mode` exact
 * `Display resolution` 1280x720
 * `Reseed Screen While Soft Keyboard is open` OFF
@@ -100,45 +100,45 @@ The fallback resolution is only used when the X11 resolution cannot be detected 
 * `Show additional keyboard` OFF
 * `Prefer scancodes when possible` ON
 * `Enable Accessibility service for intercepting
-system shortcuts manually.` enable termux-x11 from android accessibility menu so you can use external keyboard (wired/wireless) without issues.
+system shortcuts manually.` 在Android的辅助功能菜单中启用Termux-X11，以便您可以无障碍地使用外接键盘（有线/无线）。
 * `Enable Accessibility service for intercepting system shortcuts automatically.` ON
 
-## Controls
-For touch controls Input Bridge app is required.
+## Controls（控制器）
+为了使用触摸控制，需要安装Input Bridge应用。
 
-## Support status
-**Android 10 or higher is recommended.
+## Support status（支持的安卓版本）
+**建议使用Android 10或更高版本。
 
-### Device
-* Most Android phones equipped with a Mali GPU can run DirectX 9 games using [Mesa VirGL](https://github.com/alexvorxx/Mesa-VirGL) . It is recommended to use a Snapdragon device with Adreno 6xx or Adreno 7xx for optimal performance and compatibility with Turnip and [DXVK](https://github.com/doitsujin/dxvk).
+### Device（设备）
+* 大多数配备Mali GPU的Android手机可以使用Mesa VirGL [Mesa VirGL](https://github.com/alexvorxx/Mesa-VirGL) 来运行DirectX 9游戏。建议使用配备Adreno 6xx或Adreno 7xx的骁龙设备，以获得Turnip和 [DXVK](https://github.com/doitsujin/dxvk) 的最佳性能和兼容性。
 
 ### Root
-* Root is not required.
+* 无需获取root权限
 
-## Known issues
-* termux app can show signal 9 when using wine or while compiling box64, in this case you have to disable phantom process.
+## Known issues（已知问题）
+* 在使用Wine或编译box64时，Termux应用可能会显示信号9，这种情况下你需要禁用phantom进程。
 
-## To-do list
+## To-do list（待办事项清单）
 * virgl
-* support for non Snapdragon chips
+* 对非骁龙芯片的支持
   
-## Support Darkos
+## 支持Darkos 
 #
-Big thanks to our testers:
+非常感谢我们的测试人员：
 
 GhostDz36
 
 #
-Huge thanks to:
+衷心感谢：
 
-[airidosas252](https://github.com/airidosas252) for his turnip and wine builds.
+[airidosas252](https://github.com/airidosas252) 为我们构建的Turnip和Wine版本。
 
 #
-Special thanks to ptitSeb, Maxython, glibc-runner, hardray, Tωaik and others for help.
+特别感谢pititSeb、Maxython、glibc-runner、hardray、Tωaik以及其他人的帮助。
 
 [Darkos telegram group](https://t.me/DARKOS4android)
 
-## Third party applications
+## 第三方应用程序
 
 [glibc-packages](https://github.com/termux-pacman/glibc-packages)
 
