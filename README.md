@@ -16,6 +16,14 @@
 curl -o install https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/installOS.sh && chmod +x install && ./install
 ```
 
+**本人汉化了当前项目的部分脚本，如需体验，请打开 Termux 并粘贴以下命令：**
+
+```bash
+curl -o install https://raw.githubusercontent.com/neighbor-bear/darkos/main/installOS.sh && chmod +x install && ./install
+```
+
+
+
 3. 安装完成后，**Darkos** 将自动启动。
    请记住，每次打开 Termux 时，Darkos 都会自动启动。
    
