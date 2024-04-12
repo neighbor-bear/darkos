@@ -87,8 +87,8 @@ su -c setenforce 1
 
 ## Termux and termux-x11 preferences（Termux 和 termux-x11偏好设置）
 ### Termux的推荐设置:
-* `允许应用在后台运行时打开新窗口`
-* `允许应用显示弹出窗口`
+* `Allow apps to open new windows while running in the background`
+* `Allow apps to display pop-up windows`
 
 ### Termux-X11的推荐设置:
 * `Display resolution mode` exact
