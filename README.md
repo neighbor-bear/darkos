@@ -5,16 +5,15 @@ It utilizes [Box86](https://github.com/ptitSeb/box86)
 and [Box64](https://github.com/ptitSeb/box86)
 to run [Wine](https://www.winehq.org/) on android.
 
-# Installation（安装）:
-1. Install（安装）
+# Installation:
+1. Install
 [Termux](https://f-droid.org/repo/com.termux_118.apk),
-[Termux-X11](https://github.com/ahmad1abbadi/extra/releases/download/apps/termux-x11.apk) 和
-[Input Bridge v0.1.9.9](https://github.com/ahmad1abbadi/extra/releases/download/apps/InputBridge_v0.1.9.9.apk) 或者 [Input Bridge v0.0.7](https://github.com/ahmad1abbadi/extra/releases/download/apps/input+bridge+0.0.7.apk)
+[Termux-X11](https://github.com/ahmad1abbadi/extra/releases/download/apps/termux-x11.apk) and
+[Input Bridge v0.1.9.9](https://github.com/ahmad1abbadi/extra/releases/download/apps/InputBridge_v0.1.9.9.apk) or [Input Bridge v0.0.7](https://github.com/ahmad1abbadi/extra/releases/download/apps/input+bridge+0.0.7.apk)
 
 2. Open Termux and paste the following command:
-   打开 Termux 并粘贴以下命令
 ```bash
-curl -o install https://raw.githubusercontent.com/neighbor-bear/darkos/main/installOS.sh && chmod +x install && ./install
+curl -o install https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/installOS.sh && chmod +x install && ./install
 ```
 
 3. **Darkos** will automatically start after installation is complete.

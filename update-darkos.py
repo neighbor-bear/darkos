@@ -1,6 +1,6 @@
 import os, time, shutil, sys, subprocess, urllib.request, urllib.error, fnmatch
 current_version = "0.87"
-url = 'https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/currently%20version.txt'
+url = 'https://raw.githubusercontent.com/neighbor-bear/darkos/main/currently%20version.txt'
 def remove():
     folder_path = '/data/data/com.termux/files/home'
     for filename in os.listdir(folder_path):
@@ -34,12 +34,12 @@ try:
     os.system("rm $PREFIX/bin/debug-darkos.py")
     os.system("rm $PREFIX/bin/setting-darkos.py")
     os.system("rm $PREFIX/bin/darkos")
-    os.system("wget -O run-darkos.py https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/run-darkos.py")
-    os.system("wget -O darkos.py https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/darkos.py")
-    os.system("wget -O darkos https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/darkos")
-    os.system("wget -O debug-darkos.py https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/debug-darkos.py")
-    os.system("wget -O setting-darkos.py https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/setting-darkos.py")
-    os.system("wget -O update-darkos.py https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/update-darkos.py")
+    os.system("wget -O run-darkos.py https://raw.githubusercontent.com/neighbor-bear/darkos/main/run-darkos.py")
+    os.system("wget -O darkos.py https://raw.githubusercontent.com/neighbor-bear/darkos/main/darkos.py")
+    os.system("wget -O darkos https://raw.githubusercontent.com/neighbor-bear/darkos/main/darkos")
+    os.system("wget -O debug-darkos.py https://raw.githubusercontent.com/neighbor-bear/darkos/main/debug-darkos.py")
+    os.system("wget -O setting-darkos.py https://raw.githubusercontent.com/neighbor-bear/darkos/main/setting-darkos.py")
+    os.system("wget -O update-darkos.py https://raw.githubusercontent.com/neighbor-bear/darkos/main/update-darkos.py")
     os.system("chmod +x darkos")
     os.system("mv update-darkos.py darkos.py run-darkos.py debug-darkos.py setting-darkos.py darkos $PREFIX/bin/")
     remove()

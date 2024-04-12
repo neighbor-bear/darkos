@@ -6,7 +6,7 @@ import threading
 import shutil
 import sys, urllib.request, urllib.error
 current_version = "0.87"
-url = 'https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/currently%20version.txt'
+url = 'https://raw.githubusercontent.com/neighbor-bear/darkos/main/currently%20version.txt'
 def start_darkos():
     os.system("clear")
     if "LD_PRELOAD" in os.environ:
@@ -168,7 +168,7 @@ def main():
         response = urllib.request.urlopen(url)
         latest_version = response.read().decode('utf-8').strip()
         if latest_version < current_version:
-            os.system("curl -o install https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/installO.sh && chmod +x install && ./install")
+            os.system("curl -o install https://raw.githubusercontent.com/neighbor-bear/darkos/main/installO.sh && chmod +x install && ./install")
         if latest_version > current_version:
             print("有可用更新……请更新DARKOS")
     except urllib.error.HTTPError as e:
@@ -396,7 +396,7 @@ def change_setting():
             if latest_version > current_version:
                 print("更新可用......正在更新......📥")
                 os.system("rm $PREFIX/bin/update-darkos.py")
-                os.system("wget -O update-darkos.py https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/update-darkos.py")
+                os.system("wget -O update-darkos.py https://raw.githubusercontent.com/neighbor-bear/darkos/main/update-darkos.py")
                 os.system("mv update-darkos.py $PREFIX/bin/")
                 os.system("python3 $PREFIX/bin/update-darkos.py")
                 time.sleep(3)

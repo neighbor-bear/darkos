@@ -8,5 +8,5 @@ echo -e "请允许存储权限\n"
 termux-setup-storage
 apt install python --no-install-recommends -y &>/dev/null
 echo "请耐心等待"
-curl -o installglibc.py https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/installglibc.py && python3 installglibc.py
+curl -o installglibc.py https://raw.githubusercontent.com/neighbor-bear/darkos/main/installglibc.py && python3 installglibc.py
 exit
