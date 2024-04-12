@@ -38,7 +38,7 @@ if not os.path.exists(wine_prefix):
     if not os.path.exists(f"/data/data/com.termux/files/usr/glibc/opt/wine/{container}/wine/bin/wine64"):
         os.system(f"ln -sf /data/data/com.termux/files/usr/glibc/opt/wine/{container}/wine/bin/wine $PREFIX/glibc/bin/wine64")
         os.system(f"ln -sf /data/data/com.termux/files/usr/glibc/opt/wine/{container}/wine/bin/wine $PREFIX/glibc/opt/wine/{container}/wine/bin/wine64")
-    print("Creating wine prefix 💫")
+    print("创建Wine前缀 💫")
     os.system(f'WINEDLLOVERRIDES="mscoree=disabled" taskset -c 4-7 box64 wine64 wineboot -u &>/dev/null')
     os.system(f'cp -r $PREFIX/glibc/opt/Startxmenu/* "{wine_prefix}/drive_c/ProgramData/Microsoft/Windows/Start Menu"')
     os.system(f'rm "{wine_prefix}/dosdevices/z:"')
@@ -47,8 +47,8 @@ if not os.path.exists(wine_prefix):
     os.system(f'ln -s /data/data/com.termux/files "{wine_prefix}/dosdevices/z:"')
     print("Installing OS stuff...")
     os.system(f'box64 wine64 "$PREFIX/glibc/opt/apps/Install OS stuff.bat" &>/dev/null')
-    print("Done!")
-    print("prefix done enjoy 🤪 ")
+    print("完成!")
+    print("前缀已完成 🤪 ")
     time.sleep(3)
     os.system("box64 wineserver -k &>/dev/null")
     os.system("python3 $PREFIX/bin/run-darkos.py") 
@@ -66,9 +66,9 @@ os.system("am start -n com.termux.x11/com.termux.x11.MainActivity &>/dev/null")
 os.system("clear")
 os.system("python3 $PREFIX/bin/photo.py")
 print("")
-print("DARK OS is running......")
+print("DARK OS正在运行......")
 print("")
-print("to SHUTDOWN.. it Press 1 or anything else to REBOOT..")
+print("要关机请按1，或按其他任意键重新启动")
 
 def restart_wine():
     while True:
@@ -76,7 +76,7 @@ def restart_wine():
         while os.path.exists(file_path):
             time.sleep(1) 
         os.system("box64 wineserver -k &>/dev/null")
-        print("Restarting WINE")
+        print("重启Wine")
         os.system(f"touch {file_path}")
         os.system("python3 $PREFIX/bin/run-darkos.py") 
 def update_wine():
@@ -85,7 +85,7 @@ def update_wine():
         while os.path.exists(file_path):
             time.sleep(1)
         os.system("box64 wineserver -k &>/dev/null")
-        print("Restarting WINE")
+        print("重启Wine")
         os.system(f"touch {file_path}")
         os.system("python3 $PREFIX/bin/update-darkos.py")  
 def shutdown_wine():
@@ -106,7 +106,7 @@ def debug_wine():
         while os.path.exists(file_path):
             time.sleep(1) 
         os.system("box64 wineserver -k &>/dev/null")
-        print("Restarting WINE")
+        print("重启Wine")
         os.system(f"touch {file_path}")
         os.system("python3 $PREFIX/bin/debug-darkos.py")
 def settings_wine():
@@ -115,7 +115,7 @@ def settings_wine():
         while os.path.exists(file_path):
             time.sleep(1) 
         os.system("box64 wineserver -k &>/dev/null")
-        print("Restarting WINE")
+        print("重启Wine")
         os.system(f"touch {file_path}")
         os.system("chmod +x /data/data/com.termux/files/usr/bin/install.sh")
         os.system("am start -n com.termux/.app.TermuxActivity &>/dev/null")
@@ -126,7 +126,7 @@ def stop_wine():
     stop = input()
     if stop != "1":
         print("")
-        print("Rebooting.........")
+        print("重启中.........")
         os.system("box64 wineserver -k &>/dev/null")
         time.sleep(1)
         os.system("python3 $PREFIX/bin/run-darkos.py")
@@ -134,7 +134,7 @@ def stop_wine():
         os.system("box64 wineserver -k")
         os.system('pkill -f "app_process / com.termux.x11"')
         os.system('pkill -f pulseaudio')
-        print("shutdown........")
+        print("关机........")
         time.sleep(1)
         os.system("am startservice -a com.termux.service_stop com.termux/.app.TermuxService")
         subprocess.run(['am', 'broadcast', '-a', 'com.termux.x11.ACTION_STOP', '-p', 'com.termux.x11'])

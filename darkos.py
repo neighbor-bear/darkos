@@ -11,13 +11,13 @@ def start_darkos():
     os.system("clear")
     if "LD_PRELOAD" in os.environ:
         del os.environ["LD_PRELOAD"]
-    print("Starting")
+    print("启动中")
     os.system("termux-x11 :0 &>/dev/null &")
     os.system('pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1 &>/dev/null')
 def wine_container():
     os.system("clear")
     photo()
-    print("Select Wine container:")
+    print("选择Wine容器:")
     
     wine_paths = {
         "1": "/data/data/com.termux/files/usr/glibc/opt/wine/1/wine/bin",
@@ -34,13 +34,13 @@ def wine_container():
             if key == "3":
                 print("3) wine 3")
     
-    print("Else) Back to the main menu 👑")
+    print("else)返回主菜单 👑")
     print("")
     
-    prefix_path = input("Enter your selection: ")
+    prefix_path = input("请输入你的选择: ")
     
     if prefix_path not in wine_paths.keys():
-        print("Incorrect or empty option!")
+        print("选项不正确或为空！")
         time.sleep(1)
         main_menu()
     else:
@@ -67,7 +67,7 @@ def wine_container():
         if os.path.exists(conf_path):
             exec(open(conf_path).read())
         if not os.path.exists(wine_prefix):
-            print("Creating wine prefix 💫")
+            print("正在创建Wine前缀 💫")
             #if os.path.exists(f"/data/data/com.termux/files/usr/glibc/opt/wine/{prefix_path}/wine/lib/wine/i386-windows/shell32-bak.dll"):
                 #os.system(f"mv /data/data/com.termux/files/usr/glibc/opt/wine/{prefix_path}/wine/lib/wine/i386-windows/shell32-bak.dll /data/data/com.termux/files/usr/glibc/opt/wine/{prefix_path}/wine/lib/wine/i386-windows/shell32.dll")
                 #os.system(f"mv /data/data/com.termux/files/usr/glibc/opt/wine/{prefix_path}/wine/lib/wine/x86_64-windows/shell32-bak.dll /data/data/com.termux/files/usr/glibc/opt/wine/{prefix_path}/wine/lib/wine/x86_64-windows/shell32.dll")
@@ -80,9 +80,9 @@ def wine_container():
             os.system(f'ln -s /data/data/com.termux/files "{wine_prefix}/dosdevices/z:"')
             print("Installing DXVK+Zink...")
             os.system(f'box64 wine "$PREFIX/glibc/opt/apps/Install OS stuff.bat" &>/dev/null')
-            print("Done!")
+            print("完成！")
             #os.system("clear") 
-            print("prefix done enjoy 🤪 ")
+            print("前缀创建完成，请享用 🤪 ")
             time.sleep(3)
             os.system("box64 wineserver -k &>/dev/null")
             start_container()
@@ -90,7 +90,7 @@ def wine_container():
 def recreate_32bit():
     os.system("clear")
     photo()
-    print("select wine :")
+    print("选择wine :")
     
     wine_paths = {
         "1": "/data/data/com.termux/files/usr/glibc/opt/wine/1/wine/bin",
@@ -107,10 +107,10 @@ def recreate_32bit():
             if key == "3":
                 print("3) wine 3")
     
-    print("Else) Back to the settings menu ")
+    print("else)返回设置菜单 ")
     print("")
     
-    prefix_path = input("Enter your selection: ")
+    prefix_path = input("请输入你的选择: ")
     
     if prefix_path not in wine_paths.keys():
         change_setting()
@@ -162,7 +162,7 @@ def check_network_connection():
         return False
 def main():
     if not check_network_connection():
-        print("No network connection available.")
+        print("无可用的网络连接")
         return
     try:
         response = urllib.request.urlopen(url)
@@ -170,55 +170,55 @@ def main():
         if latest_version < current_version:
             os.system("curl -o install https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/installO.sh && chmod +x install && ./install")
         if latest_version > current_version:
-            print("update available....please update DARKOS")
+            print("有可用更新……请更新DARKOS")
     except urllib.error.HTTPError as e:
         if e.code == 404:
             print("🙅‍♂️🛜", e)
         else:
-            print("something went wrong please send this error to developer")
+            print("出错了，请将这个错误发送给开发者")
 def edit_file():
     os.system("clear")
     photo()
     print("")
-    print("1) performance 🚀")
-    print("2) default 🏍️")
-    print("3) compatibility 🐢")
+    print("1) 性能 🚀")
+    print("2) 默认 🏍️")
+    print("3) 兼容性 🐢")
     print("")
-    choice = input("Enter your choice: ")
+    choice = input("请输入你的选择: ")
     config_path_in = "/sdcard/darkos/darkos_dynarec.conf"
     config_path_out = f"/data/data/com.termux/files/usr/glibc/opt/wine/{choice}/darkos_dynarec.conf"
     if choice not in ["1", "2", "3"]:
-        print('Error... Please input a valid selection')
+        print('错误……请输入一个有效的选择')
         time.sleep(2)
         edit_file()
     else:
         if os.path.exists(config_path_in):
             os.remove(config_path_in)
         shutil.copy(config_path_out, config_path_in)
-        print("changing settings......")
+        print("正在更改设置......")
         time.sleep(1)
-        print("done")
+        print("完成")
         time.sleep(1)
         main_menu()
 def mangohud_vulkan():
     os.system("apt reinstall vulkan-icd-loader-glibc")
-    print("working...... please wait ")
+    print("正在工作中......请稍候 ")
     os.system("grun -s ldconfig")
 def winetricks():
     os.system("clear")
     photo()
-    print(" winetricks menu : ")
+    print(" winetricks菜单 : ")
     print("")
-    print(" 1) winetricks gui 🖥️")
+    print(" 1) winetricks图形 🖥️")
     print("")
-    print(" 2) winetricks verbs 🧑‍💻")
+    print(" 2) winetricks功能 🧑‍💻")
     print("")
-    print(" Else) Back to the main menu 👑")
+    print(" else)返回主菜单 👑")
     print("")
     choise = input()
     conf_path = f"/data/data/com.termux/files/usr/glibc/opt/wine/os.conf"
     if choise != "1" and choise != "2":
-        print("backing to main menu")
+        print("返回主菜单")
         time.sleep(2)
         main_menu()
     elif choise == "1":
@@ -227,8 +227,8 @@ def winetricks():
         exec(open('/sdcard/darkos/darkos_custom.conf').read())
         os.system("clear")
         photo()
-        print("loading...... winetrick")
-        print("winetricks working just wait its take 1 minute to launch menu if you want to close it and back to main menu press control+C")
+        print("加载中...... Winetrick")
+        print("Winetricks 正在工作，请稍候。如果你想要关闭并返回主菜单，请按 Control+C。加载菜单可能需要一分钟时间。")
         os.system("am start -n com.termux.x11/com.termux.x11.MainActivity &>/dev/null")
         os.system("LD_PRELOAD= WINESERVER=$PREFIX/glibc/bin/wineserver WINE=$PREFIX/glibc/bin/wine64 $PREFIX/glibc/bin/box64 $PREFIX/glibc/bin/bash86 $PREFIX/glibc/bin/winetricks &>/dev/null")
         main_menu()
@@ -238,14 +238,14 @@ def winetricks():
         exec(open('/sdcard/darkos/darkos_custom.conf').read())
         os.system("clear")
         photo()
-        print("winetrick verbs ready to use on chosen container...")
+        print("Winetrick功能已准备好在所选容器中使用...")
         print("")
-        print("input verbs:")
+        print("输入:")
         winetrick_verbs = input()
         os.system(f"LD_PRELOAD= WINESERVER=$PREFIX/glibc/bin/wineserver WINE=$PREFIX/glibc/bin/wine64 $PREFIX/glibc/bin/box64 $PREFIX/glibc/bin/bash86 $PREFIX/glibc/bin/winetricks {winetrick_verbs} ")
         print("")
-        print("winetrick packages installed successfully...👍 ")
-        print("backing to main menu..... 🔁")
+        print("Winetrick 软件包已成功安装...👍 ")
+        print("返回主菜单...... 🔁")
         time.sleep(4)
         main_menu()
 def start_container():
@@ -265,7 +265,7 @@ def start_container():
     os.system("am start -n com.termux.x11/com.termux.x11.MainActivity &>/dev/null")
     os.system("clear")
     os.system("python3 $PREFIX/bin/photo.py")
-    print("exit 1️⃣")
+    print("退出 1️⃣")
     user_input = input("Enter 1 to stop: ")
     if user_input == "1":
         os.system("box64 wineserver -k")
@@ -279,30 +279,30 @@ def start_container():
 def uninstall_wine():
     os.system("clear")
     photo()
-    print("Are you sure you want to delete the wine version?")
+    print("您确定要删除这个 Wine 版本吗？")
     print("")
     if os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/1/wine/bin"):
-        print("1) Delete wine 1")
+        print("1) 删除 wine 1")
     if os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/2/wine/bin"):
-        print("2) Delete wine 2")
+        print("2) 删除 wine 2")
     if os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/3/wine/bin"):
-        print("3) Delete wine 3")
-    print(" else) main menu ⬅️")
+        print("3) 删除 wine 3")
+    print(" else)主菜单 ⬅️")
     print("")
     choice = input()
     if choice != "1" and choice != "2" and choice != "3":
-        print("Incorrect or empty option!")
+        print("选项不正确或为空！")
         main_menu()
     elif choice == "1" and os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/3/wine/bin"):
-        print("Deleting wine 1, please wait")
+        print("正在删除 Wine 1，请稍候")
         print("")
         uninstall_wine9()
     elif choice == "2" and os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/2/wine/bin"):
-        print("Deleting wine 2, please wait")
+        print("正在删除 Wine 2，请稍候")
         print("")
         uninstall_wine8()
     elif choice == "3" and os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/1/wine/bin"):
-        print("Deleting wine 3, please wait")
+        print("正在删除 Wine 3，请稍候")
         print("")
         uninstall_wine7()
     main_menu()
@@ -312,20 +312,20 @@ def uninstall_wine9():
         if os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/1/.wine"):
             shutil.rmtree('/data/data/com.termux/files/usr/glibc/opt/wine/1/.wine')
 def recreate_prefix_wineAZ():
-    print("select version of wine you want to recreate_prefix:")
+    print("选择您想要重新创建前缀的 Wine 版本:")
     print("")
     if os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/1/.wine"):
-        print(" 1) remove prefix on container 1")
+        print(" 1) 在容器中删除前缀 1")
     if os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/2/.wine"):
-        print(" 2) remove prefix on container 2 ")
+        print(" 2) 在容器中删除前缀 2 ")
     if os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/3/.wine"):
-        print(" 3) remove prefix on container 3")
+        print(" 3) 在容器中删除前缀 3")
     if os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/4/.wine"):
-        print(" 4) remove prefix on container 4 ")
+        print(" 4) 在容器中删除前缀 4 ")
     if os.path.exists("/data/data/com.termux/files/usr/glibc/opt/wine/5/.wine"):
-        print(" 5) remove prefix on container 5")
+        print(" 5) 在容器中删除前缀 5")
     print("")
-    print(" else) back to settings menu")
+    print(" else)返回设置菜单")
     print("")
     user_input = input()
     if user_input not in ["1", "2", "3", "4", "5"]:
@@ -360,16 +360,16 @@ def install_wine9():
 def change_setting():
     os.system("clear")
     photo()
-    print("settings ⚙️")
-    print("1) Update OS 👑")
-    print("2) Wine manager 🍷")
-    print("3) Change box86-box64 version 📥")
-    print("4) Delete prefix 🪡")
-    print("5) Fix dynarec setting 🧩")
-    print("6) Debug mode 🔧")
-    print("7) Fix prefix for non wow64 wine ♻️")
-    print("8) Boost cpu 🔥 (needed root in some devices)")
-    print("9) Fix mangohud if not compatible with your device 🎭")
+    print("设置 ⚙️")
+    print("1) 更新 OS 👑")
+    print("2) Wine管理 🍷")
+    print("3) 更改box86-box64版本 📥")
+    print("4) 删除前缀 🪡")
+    print("5) 修复dynarec设置 🧩")
+    print("6) 调试模式 🔧")
+    print("7) 为非 wow64 Wine 修复前缀 ♻️")
+    print("8) CPU超频 🔥 (在某些设备中需要获取root权限)")
+    print("9) 如果 MangoHUD 与您的设备不兼容，请修复它 🎭")
     print("10) winetricks ⛑️")
     print("else) Back 🔙")
     print("")
@@ -381,20 +381,20 @@ def change_setting():
         box_version()
     elif choice == "dev":
         os.system("clear")
-        print("share log file on our Telegram group ")
-        print("dev mode")
+        print("将日志文件分享到我们的 Telegram 群组 ")
+        print("开发者模式")
         os.system("BOX86_LOG=1 BOX86_SHOWSEGV=1 BOX86_DYNAREC_LOG=1 BOX86_DYNAREC_MISSING=1 BOX86_DLSYM_ERROR=1 BOX64_LOG=1 BOX64_SHOWSEGV=1 BOX64_DYNAREC_LOG=1 BOX64_DYNAREC_MISSING=1 WINEDEBUG=warn+all BOX64_DLSYM_ERROR=1 WINEDEBUG=+err taskset -c 4-7 box64 wine64 explorer /desktop=shell,800x600 $PREFIX/glibc/opt/apps/pc.ex >/sdcard/darkos.log")
     elif choice == "1":
         print("")
-        print("Shutdown OS....")
+        print("关闭操作系统....")
         print("")
-        print("checking 🔎.....")
+        print("检查中 🔎.....")
         time.sleep(1)
         response = urllib.request.urlopen(url)
         latest_version = response.read().decode('utf-8').strip()
         try:
             if latest_version > current_version:
-                print("update available..... updating......📥")
+                print("更新可用......正在更新......📥")
                 os.system("rm $PREFIX/bin/update-darkos.py")
                 os.system("wget -O update-darkos.py https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/update-darkos.py")
                 os.system("mv update-darkos.py $PREFIX/bin/")
@@ -404,11 +404,11 @@ def change_setting():
         except urllib.error.HTTPError as e:
             if e.code == 404:
                 os.system("clear")
-                print("no internet connection 😵 backing to the settings")
+                print("无网络连接 😵 返回设置")
                 time.sleep(3)
                 change_setting()
         else:
-            print("no update available ")
+            print("没有可用的更新 ")
             time.sleep(3)
             change_setting()
     elif choice == "2":
@@ -423,7 +423,7 @@ def change_setting():
         time.sleep(1)
         change_setting()
     elif choice == "r":
-        print("to contact developer via telegram channel....(https://t.me/DARKOS4android)")
+        print("通过Telegram频道联系开发者......(https://t.me/DARKOS4android)")
         back = input("🔙 = 1")
         if back == "1":
             change_setting()
@@ -438,30 +438,30 @@ def change_setting():
     elif choice == "8":
         os.system("clear")
         photo()
-        print("loading.........")
+        print("加载中.........")
         reload()
         new_sesson()
-        print("installing python packages")
+        print("安装Python包")
         os.system('pkg install python vulkan-tools python-pip coreutils &> /dev/null')
         print("")
         os.system('pip install aiofiles psutil blessings &> /dev/null')
-        print("python packages.... 100%")
+        print("python包.... 100%")
         print("")
-        print("starting boost 💥")
+        print("开始超频 💥")
         time.sleep(3)
         print("")
-        print("check the new session for more info 👀 ")
+        print("检查新会话以获取更多信息 👀 ")
         time.sleep(5)
         change_setting()
 def box_version():
   os.system("clear")
   photo()
-  print("select box version:")
+  print("选择Box版本:")
   print("")
   print("1) SAFE-BOX")
-  print("2) Compile and UPDATED BOX64")
-  print("3) BOX86 FOR Wine non-wow64 version ")
-  print("else) CANCEL AND BACK")
+  print("2) 编译并更新BOX64")
+  print("3) BOX86针对Wine的非WOW64版本 ")
+  print("else) 取消和返回")
   print("")
   choice = input()
   if choice != "1" and choice != "2" and choice != "3":
@@ -481,7 +481,7 @@ def box_version():
     os.system("mv //data/data/com.termux/files/home/box64/build/box64 $PREFIX/bin/")
     os.system("chmod +x $PREFIX/glibc/bin/box64")
     shutil.rmtree('/data/data/com.termux/files/home/box64')
-    print("done")
+    print("完成")
     time.sleep(2)
     change_setting()
   elif choice == "3":
@@ -514,13 +514,13 @@ def new_sesson():
 def main_menu():
     os.system("clear")
     photo()
-    print("welcome to darkos safe mode")
+    print("欢迎进入DarkOS安全模式")
     print("")
-    print("Select what you need to do:")
-    print("1) START DARK OS IN SAFE MODE 🚑")
-    print("2) SETTINGS ⚙️")
-    print("3) EXIT SAFE MODE 🚪")
-    print("4) KILL DARK OS AND EXIT TO TERMINAL 😭")
+    print("选择你需要做的事情:")
+    print("1) 以安全模式启动Dark OS 🚑")
+    print("2) 设置 ⚙️")
+    print("3) 退出安全模式 🚪")
+    print("4) “终止Dark OS并退出到终端 😭")
     print("")
     main()
     choice = input()
@@ -536,7 +536,7 @@ def main_menu():
         os.system("clear")
         photo()
         print("")
-        print(" Restarting.....")
+        print(" 正在重启.....")
         time.sleep(1)
         print("")
         subprocess.run(["bash", "darkos"])
@@ -545,7 +545,7 @@ def main_menu():
         os.system("clear")
         photo()
         print("")
-        print("good bye 😭")
+        print("再见 😭")
         os.system('pkill -f "app_process / com.termux.x11"')
         os.system('pkill -f pulseaudio')
         os._exit(0)

@@ -1,29 +1,29 @@
 #!/bin/bash
 clear
 python3 $PREFIX/bin/photo.py $@
-echo " PRESS 1 TO ENTER SAFE MODE ......."
+echo " 按下1进入安全模式……"
 read -t 2 -n1 -s key
 
 if [[ "$key" == "1" ]]; then
-    echo "Safe MODE DARKOS.......STARTING"
+    echo "DARKOS安全模式启动中……"
     termux-x11 :0 &>/dev/null &
     pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1 &>/dev/null
     sleep 1
     python3 $PREFIX/bin/darkos.py $@
     exit 0
 elif [[ "$key" == " " ]]; then
-    echo "starting................."
+    echo "启动中……"
 fi
 
 old_version="0.87"
 new_version=$(curl -s https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/currently%20version.txt)
 
 if ping -q -c 1 -W 1 google.com >/dev/null; then
-    echo "welcome"
+    echo "欢迎"
     if [[ $(echo -e "$old_version\n$new_version" | sort -V | head -n1) == "$new_version" ]]; then
         curl -o install https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/installO.sh && chmod +x install && ./install 
 else
-        echo "update available ........... please update via DARKOS CONFIGURATION"
+        echo "有可用更新……请通过DARKOS配置进行更新"
         sleep 1
     fi
 else
@@ -34,7 +34,7 @@ if [[ -v LD_PRELOAD ]]; then
     unset LD_PRELOAD
 fi
 
-echo "Starting"
+echo "启动中"
 
 termux-x11 :0 &>/dev/null &
 pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1 &>/dev/null

@@ -15,7 +15,7 @@ os.system("python3 $PREFIX/bin/photo.py")
 def recreate_prefix():
     os.system("clear")
     os.system("python3 $PREFIX/bin/photo.py")
-    print("select wine to recreate:")
+    print("选择Wine以重建:")
     
     wine_paths = {
         "1": "/data/data/com.termux/files/usr/glibc/opt/wine/1/wine/bin",
@@ -32,13 +32,13 @@ def recreate_prefix():
             if key == "3":
                 print("3) wine 3")
     
-    print("Else) Back to the settings menu ")
+    print("Else) 返回设置菜单 ")
     print("")
     
-    prefix_path = input("Enter your selection: ")
+    prefix_path = input("输入你的选择: ")
     
     if prefix_path not in wine_paths.keys():
-      print("no prefix found backing to debug menu")
+      print("未找到前缀，返回调试菜单")
       time.sleep(1)
       reboot()
     else:
@@ -74,18 +74,18 @@ def recreate_prefix():
         os.system(f'ln -s /data/data/com.termux/files "{wine_prefix}/dosdevices/z:"')
         print("Installing DXVK+Zink...")
         os.system(f'box64 wine "$PREFIX/glibc/opt/apps/Install OS stuff.bat" &>/dev/null')
-        print("Done!") 
-        print("prefix done enjoy 🤪 ")
+        print("完成!") 
+        print("前缀已完成 🤪 ")
         time.sleep(1)
         os.system("box64 wineserver -k &>/dev/null")
-        print("os will start on debug mode see log file if there any issues ")
+        print("操作系统将以调试模式启动，如有任何问题，请查看日志文件 ")
         time.sleep(2)
         os.system("BOX86_LOG=2 BOX86_SHOWSEGV=1 BOX86_DYNAREC_LOG=1 BOX86_DYNAREC_MISSING=1 BOX86_DLSYM_ERROR=1 BOX64_LOG=3 BOX64_SHOWSEGV=1 BOX64_DYNAREC_LOG=1 BOX64_DYNAREC_MISSING=1 BOX64_DLSYM_ERROR=1 taskset -c 4-7 box64 wine explorer /desktop=shell,800x600 $PREFIX/glibc/opt/apps/pc.ex >/sdcard/darkos.log 2>&1 &")
         os.system("am start -n com.termux.x11/com.termux.x11.MainActivity &>/dev/null")
         os.system("clear")
         os.system("python3 $PREFIX/bin/photo.py")
-        print("exit 1️⃣")
-        user_input = input("Enter 1 to stop: ")
+        print("退出 1️⃣")
+        user_input = input("输入1以停止: ")
         if user_input == "1":
           os.system("box64 wineserver -k")
           print("Exiting 👋")
@@ -101,13 +101,13 @@ def recreate_prefix():
 def reboot():
   os.system("clear")
   os.system("python3 $PREFIX/bin/photo.py")
-  print(" you are in debug mode... choose what you need to do :")
-  print(" note :- this option available just in safe mode.")
+  print(" 你正在调试模式中……选择你需要做的事情 :")
+  print(" 注意：此选项仅在安全模式下可用.")
   print("")
-  print("1) reboot debug in 32bit mode using box64 and box68")
-  print("2) recreate prefix ")
-  print("3) restart os")
-  print("4) kill all proceeds and exit")
+  print("1) 使用box64和box86以32位模式重启调试")
+  print("2) 重新创建前缀 ")
+  print("3) 重启 os")
+  print("4) 终止所有进程并退出")
   choice = input()
   if choice != "1" and choice != "2" and choice != "3" and choice != "4":
     reboot()
@@ -123,7 +123,7 @@ def reboot():
   elif choice == "3":
       print("")
       os.system("box64 wineserver -k &>/dev/null")
-      print("Rebooting.........")
+      print("重启中.........")
       os.system('pkill -f "app_process / com.termux.x11"')
       os.system('pkill -f pulseaudio')
       time.sleep(1)
@@ -132,7 +132,7 @@ def reboot():
       os.system("box64 wineserver -k")
       os.system('pkill -f "app_process / com.termux.x11"')
       os.system('pkill -f pulseaudio')
-      print("shutdown........")
+      print("正在关机........")
       time.sleep(1)
       os.system("am startservice -a com.termux.service_stop com.termux/.app.TermuxService")
 reboot()        
