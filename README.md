@@ -108,7 +108,7 @@ su -c setenforce 1
 * `Show additional keyboard` OFF
 * `Prefer scancodes when possible` ON
 * `Enable Accessibility service for intercepting
-system shortcuts manually.` 在Android的辅助功能菜单中启用Termux-X11，以便您可以无障碍地使用外接键盘（有线/无线）。
+system shortcuts manually.` \n在Android的辅助功能菜单中启用Termux-X11，以便您可以无障碍地使用外接键盘（有线/无线）。
 * `Enable Accessibility service for intercepting system shortcuts automatically.` ON
 
 ## Controls（控制器）
