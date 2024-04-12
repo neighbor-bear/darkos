@@ -13,7 +13,7 @@ to run [Wine](https://www.winehq.org/) on android.
 
 2. Open Termux and paste the following command:
 ```bash
-curl -o install https://raw.githubusercontent.com/ahmad1abbadi/darkos/main/installOS.sh && chmod +x install && ./install
+curl -o install https://raw.githubusercontent.com/neighbor-bear/darkos/main/installOS.sh && chmod +x install && ./install
 ```
 
 3. **Darkos** will automatically start after installation is complete.
